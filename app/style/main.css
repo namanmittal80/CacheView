@@ -1,0 +1,554 @@
+html,
+body {
+	/* font-family: 'Open Sans', serif; */
+	font-size: 1.05rem;
+}
+
+hr {
+	border-top: 1px solid #dadfe1;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.container-fluid {
+	display: grid;
+	grid-template-areas: "nav content";
+	grid-template-columns: 25% 75%;
+	height: 100vh;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+nav {
+	grid-area: nav;
+}
+
+main {
+	grid-area: content;
+	width: 100%;
+}
+
+#logo {
+	font-size: 5.5rem;
+	font-family: 'Rubik', sans-serif;
+	color: #353846;
+
+}
+
+.sidenav {
+	z-index: 1;
+	overflow-x: hidden;
+	border-right: 1px solid grey;
+	box-shadow: 1px 1px 1px #888;
+	background-color: #353846;
+	color: #dadfe1;
+}
+
+.sidenav h1 {
+	margin-top:15px;
+	text-align: center;
+}
+
+.vakata-context {
+	z-index: 999 !important;
+}
+
+/*.sidenav a {*/
+/*	padding: 6px 8px 6px 16px;*/
+/*	text-decoration: none;*/
+/*	font-size: 25px;*/
+/*	color: #818181;*/
+/*	display: block;*/
+/*}*/
+
+nav a:hover {
+	color: #f1f1f1;
+}
+
+/*@media screen and (max-height: 450px) {*/
+/*    .sidenav {*/
+/*        padding-top: 15px;*/
+/*    }*/
+
+/*    .sidenav a {*/
+/*        font-size: 18px;*/
+/*    }*/
+/*}*/
+
+#iframe-container {
+	overflow: hidden;
+	padding-top: 100vh;
+	position: relative;
+}
+
+#iframe-container iframe {
+	border: 0;
+	height: calc(100% - 35px);
+	left: 0;
+	position: absolute;
+	top: 35px;
+	width: 100%;
+}
+
+#existing {
+	text-align: left;
+	border: 0;
+	outline: none;
+}
+
+#new {
+	text-align: left;
+	border: 0;
+	text-decoration: none;
+	color: black;
+}
+
+#existing:hover {
+	color: blue;
+}
+
+#new:hover {
+	color: blue;
+}
+
+.list-group-item {
+	/*padding-left: 17%;*/
+	border: 0;
+	text-align: center;
+}
+
+.list-subgroup-item {
+	padding-left: 17%;
+	border: 0;
+}
+
+#startmenu {
+	padding-top: 100px;
+}
+
+#input-group {
+	width: 90%;
+	border: 0;
+}
+
+#search-input:hover {
+    outline: none;
+}
+
+.form-control:focus {
+	border-color: #ced4da;
+	box-shadow: 0 0 0 0
+}
+
+.recent {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	color: #dadfe1;
+	text-align: left;
+}
+
+#recents_header {
+	font-size: 1.5rem;
+	font-family: 'Rubik', sans-serif;
+	text-align: center;
+	padding: 1rem;
+}
+
+.recent_workspace_name {
+	font-weight: 600;
+}
+
+.recent_workspace_path {
+	font-weight: 200;
+	font-size: 0.75rem;
+}
+
+#workbenches a {
+	background-color: rgba(0, 0, 0, .03);
+}
+
+#workbenches a:hover {
+	background-color: #A9A9A9;
+}
+
+.submenu {
+	text-align: left;
+	border: 0;
+	text-decoration: none !important;
+	color: black;
+}
+
+
+.submenu:hover {
+	color: blue;
+}
+
+button {
+	/* font-family: 'Open Sans', serif !important; */
+	font-family: 'Rubik', sans-serif;
+}
+
+#back-button:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+#back-button {
+	transition: transform 0.75s;
+	font-size: 1.5rem;
+	padding: 0.75rem;
+}
+
+#delete-button:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+#delete-button {
+	transition: transform 0.75s;
+	font-size: 1.5rem;
+	padding: 0.75rem;
+}
+
+#search-button:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+#search-button {
+    transition: transform 0.75s;
+    padding:0.5rem;
+}
+
+.searchbar{
+    padding:1rem;
+
+}
+
+#search_info{
+    color:#dadfe1;
+}
+
+#search-col{
+    padding-left:0px !important;
+}
+
+#toggleNotes:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+#data:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+#closeNotes {
+	transition: transform 0.75s;
+}
+
+#closeNotes:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+#saveNotes {
+	transition: transform 0.75s;
+}
+
+#saveNotes:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+#toggleNotes {
+	transition: transform 0.75s;
+	padding-top: 8px;
+}
+
+#data {
+	transition: transform 0.75s;
+	padding-right: 8px;
+}
+
+.chrome-tabs {
+	height: 33px;
+	position: fixed;
+	box-sizing: border-box;
+	top: 0;
+	font-size: 12px;
+	border-radius: 5px 0 0 0;
+	background: #dee1e6;
+	overflow: hidden;
+	width: 70%;
+}
+
+.chrome-tabs .chrome-tabs-content {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.addNotes {
+	height: 33px;
+	position: fixed;
+	box-sizing: border-box;
+	top: 0;
+	right: 0;
+	border-radius: 0 5px 0 0;
+	background: #dee1e6;
+	overflow: hidden;
+	width: 5%;
+	text-align: center;
+}
+
+
+/*#metadata {*/
+/*    border: 1px solid grey;*/
+/*    display: none;*/
+/*    position: fixed;*/
+/*    left: 25%;*/
+/*    bottom: 0;*/
+/*    width: 75%;*/
+/*    height: 100%;*/
+/*    text-align: left;*/
+/*    background: #F5F5F5;*/
+/*    padding: 10px;*/
+/*}*/
+
+textarea {
+	padding-right: 10px;
+	outline: none;
+	resize: none;
+	width: 80%;
+	height: 80%;
+}
+
+#exit {
+	padding-top: 30px;
+	text-decoration: underline;
+}
+
+.back {
+	width: 100%;
+	height: auto;
+	padding: 10px;
+}
+
+.Panel {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background: #dbdbdb;
+	transition: top .25s ease-out;
+	will-change: top;
+}
+
+.Panel-toggle {
+	padding: 5px;
+	margin: 5px;
+	background: rgba(255, 255, 255, .45);
+}
+
+.is-active .Panel-toggle {
+	background: rgba(255, 255, 255, 1);
+}
+
+.Panel.is-open {
+	top: 60%;
+}
+
+.Panel.is-closed {
+	top: 90%;
+}
+
+.Panel.is-active {
+	transition: none;
+}
+
+.back {
+	width: 100%;
+	height: auto;
+	padding: 10px;
+}
+
+#left {
+	float: left;
+	width: 50%;
+}
+
+#bar {
+	height: 33px;
+	background-color: #dee1e6;
+}
+
+.sidebar {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	background-color: #ffc;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 10px;
+	box-shadow: 5px 5px 10px -2px;
+}
+
+.toast-header {
+	background-color: #ffc;
+	color: black;
+	display: block;
+}
+
+.toast-body {
+	background-color: #ffc;
+	border: none;
+	font-size: 12px;
+}
+
+#workspaceName {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-weight: 300;
+	font-size: 1rem;
+	padding: 1rem;
+}
+
+#existing_workspace_dropdown {
+	text-align: center;
+	display: none;
+	position: relative;
+	top: 0;
+	left: 25%;
+	width: 75%;
+}
+
+#closeWorkspaces {
+	float: right;
+	/*text-decoration: underline;*/
+	transition: color 0.1s ease;
+}
+
+#closeWorkspaces:hover {
+	color: white;
+}
+
+#existing_workspace {
+	max-height: 450px;
+	overflow-y: auto;
+	color: black;
+	/*padding-left: 20%;*/
+	/*padding-right: 20%;*/
+
+}
+
+#existing_workspace_dropdown {
+	border-bottom: 1px solid grey;
+	border-top: 1px solid grey;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
+	border-radius: 5px;
+}
+
+#existing_workspace a:hover {
+	background-color: #A9A9A9;
+}
+
+.workspaceItems {
+	border-top: 1px solid #f2f2f2;
+}
+
+#existing_workspace_dropdown {
+	width: 500px;
+}
+
+#existingSearch {
+	box-sizing: border-box;
+	border: none;
+	width: 95%;
+	outline: none;
+	padding-left: 10px;
+	/*border-bottom: 1px solid #ddd;*/
+}
+
+.searchbar i{
+    padding:0.5rem;
+}
+
+#closeWorkspaces {
+	padding-top: 5px;
+	padding-right: 5px;
+}
+
+.jstree-default .jstree-wholerow-clicked {
+
+	background: #5D737E !important;
+}
+
+#rdfAlert {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    padding-left: 5px;
+}
+
+.list-group-item{
+    padding:1rem !important;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#loadingCover {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 6;
+}
+
+#loadingGif {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}

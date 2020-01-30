@@ -1,0 +1,265 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Cashd</title>
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="style/jstree.css"/>
+    <link rel="stylesheet" href="style/bootstrap.min.css"/>
+    <link rel="stylesheet" href="style/main.css"/>
+    <link rel="stylesheet" href="style/snackbar.css"/>
+    <link rel="stylesheet" href="style/chrome-tabs.css">
+    <link href="style/merriweather_font.css" rel="stylesheet">
+    <link href="style/font-awesome.min.css" rel="stylesheet">
+
+    <script src="js/d3e3f7fe18.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div id="loadingCover" style="backdrop-filter: blur(2px);display:none;">
+        <img src="./images/loading.gif" id="loadingGif" />
+    </div>
+
+<!-- grid containing sidenav and main content -->
+<div class="container-fluid">
+
+    <!-- side nav; left column of container-->
+    <nav class="sidenav">
+        <h1 id="workspaceLabel"> Recents </h1>
+        <hr id="workspacesHr"/>
+
+        <!-- workbench part of side bar -->
+        <div id="workbenches">
+            <!-- read in most recent workbenches -->
+            <div id="list" class="list-group">
+                <!-- recent gets appended here by jquery -->
+            </div>
+        </div>
+
+        <!-- Sidebar for Workspace View -->
+        <div id="files" style="display:none;">
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 px-0">
+                        <i id="back-button" class="back img-fluid fas fa-arrow-circle-left"></i>
+                    </div>
+                    <div class="col-md-8 col-md-offset-2">
+                        <h4 id="workspaceName"></h4>
+                        <p id="importing" style="display: none"> Importing...</p>
+                        <p id="indexing"> Indexing...</p>
+                    </div>
+                    <div class="col-md-2 col-md-offset-6 px-0">
+                        <i id="delete-button" class="search img-fluid fas fa-trash" alt="Delete workspace"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar UI -->
+            <div class="searchbar container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <a href="#" data-toggle="tooltip" title="Click me for more info on search!"
+                           data-placement="bottom">
+                            <i id="search_info" class="doc_link fas fa-info-circle"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <input id="search-input" class=" search-input" type="text" placeholder="Search"
+                               aria-label="Search">
+                    </div>
+                    <div id="search-col" class="col-md-2">
+                        <i id="search-button" class=" fas fa-search search" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Buttons with Import/AddFolder -->
+            <div class="dropdown" style="padding-left: 15px;">
+                <!-- Import button -->
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+                <!-- Add folder button -->
+                <button class="btn btn-secondary" type="button" id="newRoot" style="">
+                    Add Folder
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a id="importHTML" class="dropdown-item" href="#">Files</a>
+                    <input type="file" id="multipleFiles" style="display:none;" multiple accept=".html"/>
+                    <a id="importDirectory" class="dropdown-item" href="#">Directory</a>
+                </div>
+            </div>
+            <br>
+
+            <!-- JS Tree File Container -->
+            <div id="file-container"></div>
+        </div>
+    </nav>
+
+    <!-- main content; right column of container -->
+    <div class="main">
+        <!-- start menu part of main -->
+        <div id="startmenu">
+            <!-- logo -->
+            <h1 id="logo" class="text-center">cashd</h1>
+            <br>
+
+            <!-- create or open workspace options -->
+            <div class="list-group">
+                <!-- Create Workspace -->
+                <div class="list-group-item">
+                    <i class="fa fa-file"></i>
+                    <a href="#" id="blank" class="submenu" data-parent="#newsubmenu">Create
+                        Blank Workspace</a>
+                </div>
+
+                <!-- Open Existing Workspace -->
+                <div class="list-group-item">
+                    <i class="fa fa-folder"></i>
+                    <input id="existing" type="button" value="Open Existing Workspace"/>
+                </div>
+
+                <div class="list-group-item">
+                    <i class="fas fa-question-circle"></i>
+                    <a href="#" id="" class="doc_link submenu" data-parent="#newsubmenu">Documentation</a>
+                </div>
+                <div id="emptyWorkspacesToast">No existing workspaces!</div>
+            </div>
+            <!-- list of existing workspaces in /workspaces folder -->
+            <div id="existing_workspace_dropdown">
+                <i id="closeWorkspaces" class="fa fa-times"></i>
+                <input type="text" placeholder="Search..." id="existingSearch">
+                <div id="existing_workspace">
+                    <div id="workplaces_list" class="list-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- iframe part of main -->
+        <div id="iframe-container" style="display: none;">
+            <div class="chrome-tabs">
+                <div class="chrome-tabs-content"></div>
+                <div id="alertContainer">
+
+                </div>
+            </div>
+
+            <!--Notes UI-->
+            <div class="addNotes">
+                <i id="data" class="fa fa-info-circle" style="display: none"></i>
+                <i id="toggleNotes" class="fa fa-edit" style="display: none"></i>
+            </div>
+            <iframe id="iframe" src=""></iframe>
+            <div id="metadata" class="sidebar">
+                <i id="closeNotes" class="fa fa-arrow-left" style="float: left; padding-left: 15px;"></i>
+                <i id="saveNotes" onclick="toast()" class="fa fa-save" style="float: right; padding-right: 15px;"></i>
+                <br>
+                <p class="toast-header" id="filename"></p>
+                <div style="text-align: center">
+                    <textarea id="notes" class="toast-body" placeholder="Add note"> </textarea> <br/>
+                </div>
+            </div>
+            <div id="snackbar">Notes saved!</div>
+            <div id="rdfAlert"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Info Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1> File Info </h1>
+        <br/>
+        <p id="modalData"></p>
+    </div>
+
+</div>
+
+<!-- Including JStree and Jquery  -->
+<script>
+    window.$ = window.jQuery = require('jquery');
+    window.$ = window.jQuery;
+    window.jstree = require('./js/jstree.js');
+    window.ChromeTabs = require('chrome-tabs');
+    window.fs = require('fs-extra');
+    window.lunr = require('lunr');
+    window.prompt = require('electron-prompt');
+    window.htmlparser2 = require('htmlparser2');
+    window.rdf_parser = require('./js/rdf_parser.js');
+    window.shell = require('electron').shell;
+    window.path = require('path');
+    window.cp = require('child_process');
+    window.rimraf = require("rimraf");
+    window.dirTree = require('directory-tree');
+</script>
+
+
+<!-- loading in functions for home view and workspace view-->
+<script src="js/search.js"></script>
+<script src="js/imports.js"></script>
+<script src="js/workspace.js"></script>
+<script src="js/home.js"></script>
+
+<script>
+    $(function () {
+        // loads home page/start menu when user first enters app
+        onStart();
+    });
+
+    //Toast notification script
+    function toast() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+
+    //Opening documentation link in a new browswer, rather than just the default
+    $(".doc_link").on('click', (event) => {
+        event.preventDefault();
+        let link = 'http://veinule.cs.umd.edu/documentation.html';
+        require("electron").shell.openExternal(link);
+    })
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+<!-- sliding submenus; don't mess with the order of imports -->
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

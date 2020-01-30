@@ -1,0 +1,40 @@
+{
+  "name": "cashd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . Cashd --overwrite --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Cachd\"",
+    "package-linux": "electron-packager . Cashd --overwrite --platform=linux --arch=x64 --icon=assets/icons/png/256x256.png --prune=true --out=release-builds",
+    "package-win-install": "node ./installers/windows.js",
+    "package-mac-install": "electron-installer-dmg ./release-builds/cashd-darwin-x64/cashd.app cashdSetUp --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "bootstrap": "^4.3.1",
+    "chrome-tabs": "^5.4.0",
+    "directory-tree": "^2.2.4",
+    "draggabilly": "^2.2.0",
+    "electron-packager": "^14.1.0",
+    "electron-prompt": "^1.4.0",
+    "font-awesome": "^4.7.0",
+    "fs-extra": "latest",
+    "htmlparser2": "^4.0.0",
+    "jquery": "^3.4.1",
+    "lunr": "^2.3.8",
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.0",
+    "rimraf": "^3.0.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "electron": "^6.0.12",
+    "electron-installer-dmg": "^3.0.0",
+    "electron-winstaller": "^4.0.0"
+  }
+}
